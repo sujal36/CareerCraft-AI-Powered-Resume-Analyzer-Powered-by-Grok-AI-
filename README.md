@@ -22,7 +22,7 @@ Designed for job seekers, HR professionals, and recruiters, it helps improve res
 📦 **Installation**
 1. **Clone the repository**
 ```bash
-git clone 
+git clone https://github.com/sujal36/CareerCraft-AI-Powered-Resume-Analyzer-Powered-by-Grok-AI-
 cd careercraft-resume-analyzer
 ```
 
