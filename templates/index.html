@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareerCraft - Resume ATS Tracker</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mobile.css') }}"
+        media="screen and (max-width: 768px)">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-briefcase"></i>
+                <span>CareerCraft</span>
+            </div>
+
+            <!-- New wrapper around nav + hamburger -->
+            <div class="nav-right">
+                <ul class="nav-menu">
+                    <li><a href="#home" class="nav-link">Home</a></li>
+                    <li><a href="#offerings" class="nav-link">Services</a></li>
+                    <li><a href="#analyzer" class="nav-link">Analyzer</a></li>
+                    <li><a href="#faq" class="nav-link">FAQ</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">CareerCraft</h1>
+                    <h2 class="hero-subtitle">Perfect Your Fit with Precision</h2>
+                    <p class="hero-description">
+                        Imagine a tool that not only evaluates the effectiveness of a resume but also guides job seekers
+                        in crafting an exceptional one. Our ATS-optimized Resume Analyzer leverages AI to analyze
+                        resumes, offering a precise score based on alignment with ATS (Applicant Tracking System)
+                        standards and hiring preferences. By providing actionable insights and improvement suggestions,
+                        this analyzer helps applicants refine their resumes for maximum impact, ensuring they stand out
+                        and successfully pass through hiring filters with ease.
+                    </p>
+                    <a href="#analyzer" class="cta-button">
+                        <i class="fas fa-rocket"></i>
+                        Start Analysis
+                    </a>
+                </div>
+                <div class="hero-image">
+                    <img src="{{ url_for('static', filename='images/Image1.jpg') }}" alt="Resume Analysis"
+                        class="hero-main-image" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Offerings Section -->
+    <section id="offerings" class="offerings">
+        <div class="container">
+            <div class="offerings-content">
+                <div class="offerings-image">
+                    <img src="{{ url_for('static', filename='images/Image2.jpg') }}" alt="Optimize Resume"
+                        class="offerings-image-size" />
+                    <p id="caption1"
+                        style="font-size: 1rem; font-weight: 600; color: #1a237e; margin-top: 10px; margin-left: 15px;">
+                        Optimize Your Resume
+                    </p>
+
+                </div>
+                <div class="offerings-text">
+                    <h2>Broad Range of Offerings</h2>
+                    <ul class="offerings-list">
+                        <li><i class="fas fa-check-circle"></i> ATS-Optimized Resume Analysis</li>
+                        <li><i class="fas fa-check-circle"></i> Resume Optimization</li>
+                        <li><i class="fas fa-check-circle"></i> Skill Enhancement</li>
+                        <li><i class="fas fa-check-circle"></i> Career Progression Guidance</li>
+                        <li><i class="fas fa-check-circle"></i> Tailored Profile Summaries</li>
+                        <li><i class="fas fa-check-circle"></i> Streamlined Application Process</li>
+                        <li><i class="fas fa-check-circle"></i> Personalized Recommendations</li>
+                        <li><i class="fas fa-check-circle"></i> Efficient Career Navigation</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resume Analyzer Section -->
+    <section id="analyzer" class="analyzer">
+        <div class="container">
+            <h1 class="section-title">Navigate Your Career Journey</h1>
+            <div class="analyzer-content">
+                <div class="analyzer-form">
+                    <form id="resumeForm" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="jobDescription">
+                                <i class="fas fa-clipboard-list"></i>
+                                Job Description
+                            </label>
+                            <textarea id="jobDescription" name="job_description"
+                                placeholder="Enter the job description here..." required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="resumeFile">
+                                <i class="fas fa-file-upload"></i>
+                                Upload Your Resume (PDF)
+                            </label>
+                            <div class="file-upload-wrapper">
+                                <input type="file" id="resumeFile" name="resume_file" accept=".pdf" required>
+                                <div class="file-upload-display">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <span>Choose PDF file or drag and drop</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-search"></i>
+                            <span>Analyze Resume</span>
+                        </button>
+                    </form>
+
+                    <!-- Loading Spinner -->
+                    <div id="loadingSpinner" class="loading-spinner" style="display: none;">
+                        <div class="spinner"></div>
+                        <p>Analyzing your resume...</p>
+                    </div>
+
+                    <!-- Error Message -->
+                    <div id="errorMessage" class="error-message" style="display: none;">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <span></span>
+                    </div>
+                </div>
+
+                <div class="analyzer-image">
+                    <img src="{{ url_for('static', filename='images/Image3.jpg') }}" alt="Career Guidance"
+                        class="analyzer-image-size" />
+                    <p id="caption1"
+                        style="font-size: 1rem; font-weight: 600; color: #1a237e; margin-top: 10px; margin-left: 150px;">
+                        Career Guidance
+                    </p>
+                </div>
+            </div>
+
+            <!-- Results Section -->
+            <div id="resultsSection" class="results-section" style="display: none;">
+                <h2>Analysis Results</h2>
+                <div class="results-content">
+                    <div class="results-text">
+                        <div id="analysisResult"></div>
+                    </div>
+                    <div class="results-chart">
+                        <div class="chart-container">
+                            <img id="matchChart" src="" alt="Match Percentage Chart">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq">
+        <div class="container">
+            <div class="faq-content">
+                <div class="faq-video">
+                    <video autoplay muted loop width="100%">
+                        <source src="{{ url_for('static', filename='images/AdvanceAnalysisAIVideo.mp4') }}"
+                            type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+
+                    <p id="caption1"
+                        style="font-size: 1rem; font-weight: 600; color: #1a237e; text-align: center; margin-top: 10px;">
+                        Advance Analysis
+                    </p>
+
+                </div>
+                <div class="faq-text">
+                    <h2>Frequently Asked Questions</h2>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <i class="fas fa-question-circle"></i>
+                            How does CareerCraft analyze resumes and job descriptions?
+                        </div>
+                        <div class="faq-answer">
+                            CareerCraft uses advanced AI algorithms to analyze resumes and job descriptions, identifying
+                            key keywords and assessing compatibility between the two.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <i class="fas fa-question-circle"></i>
+                            Is CareerCraft suitable for both entry-level and experienced professionals?
+                        </div>
+                        <div class="faq-answer">
+                            Absolutely! CareerCraft caters to job seekers at all career stages, offering tailored
+                            insights and guidance to enhance their resumes and advance their careers.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <i class="fas fa-question-circle"></i>
+                            Can CareerCraft suggest improvements for my resume?
+                        </div>
+                        <div class="faq-answer">
+                            Yes, CareerCraft provides personalized recommendations to optimize your resume for specific
+                            job openings, including suggestions for missing keywords and alignment with desired job
+                            roles.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-row">
+                <!-- Logo & Description -->
+                <div class="footer-col">
+                    <h2 class="footer-logo">Career<span>Craft</span></h2>
+                    <p>Your Trusted Partner for Career Growth — Anytime, Anywhere. Upload your resume for instant AI
+                        analysis, receive ATS-friendly feedback, optimization tips, interview guidance, and personalized
+                        insights to improve your profile and land your job faster.</p>
+
+                    <div class="footer-social">
+                        <a href="https://x.com/SujalRas18" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://www.instagram.com/_sujal18_/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/sujal-rastogi-0584a430a/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://github.com/sujal36" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Information -->
+                <div class="footer-col">
+                    <h3>Information</h3>
+                    <ul>
+                        <li><a href="#analyzer">How It Works</a></li>
+                        <li><a href="https://topresume.com/career-advice/what-is-an-ats-resume" target="_blank"
+                                rel="noopener noreferrer">ATS Optimization Guide</a></li>
+                        <li><a href="https://en.wikipedia.org/wiki/Privacy_policy" target="_blank"
+                                rel="noopener noreferrer">Privacy & Cookies Policy</a></li>
+                    </ul>
+                </div>
+
+                <!-- Customer Support -->
+                <div class="footer-col">
+                    <h3>Customer Support</h3>
+                    <ul>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="https://www.indeed.com/career-advice/resumes-cover-letters/automated-screening-resume"
+                                target="_blank" rel="noopener noreferrer">Resume Tips & Tricks</a></li>
+                        <li><a href="https://www.ncda.org/aws/NCDA/pt/sp/resources" target="_blank"
+                                rel="noopener noreferrer">Career Resources</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div class="footer-col">
+                    <h3>Have a Questions?</h3>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> (+91)9528879243</li>
+                        <li><i class="fas fa-envelope"></i>sujalrastogi.72@gmail.com</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>Copyright © 2024 All rights reserved | Developed By Sujal Rastogi <i class="fas fa-heart"></i></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+
+</html>
